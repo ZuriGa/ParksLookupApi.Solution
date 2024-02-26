@@ -1,8 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace ParksLookup.Models
 {
-  public class ParksLookupContext : DbContext
+  public class ParksLookupContext : IdentityDbContext<ApplicationUser>
   {
     public DbSet<Park> Parks { get; set; }
 
