@@ -8,12 +8,11 @@ namespace ParksLookup.Models
   {
     public DbSet<Park> Parks { get; set; }
 
-    public ParksLookupContext(DbContextOptions<ParksLookupContext> options) : base(options)
-    {
-    }
-
+    public ParksLookupContext(DbContextOptions<ParksLookupContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder builder)
         {
+          base.OnModelCreating(builder);
+          
             builder.Entity<Park>()
               .HasData(
                 new Park 

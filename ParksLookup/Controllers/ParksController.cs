@@ -1,18 +1,24 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ParksLookup.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+
 
 namespace ParksLookup.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
+  [Authorize]
   public class ParksController : ControllerBase
   {
     private readonly ParksLookupContext _db;
+    private readonly UserManager<ApplicationUser> _userManager;
 
-    public ParksController(ParksLookupContext db)
+    public ParksController(ParksLookupContext db, UserManager<ApplicationUser> userManager)
     {
       _db = db;
+      _userManager = userManager;
     }
 
     //GET api/Parks
