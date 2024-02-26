@@ -15,11 +15,18 @@ namespace ParksLookup.Controllers
       _db = db;
     }
 
-    //GET api/parks
+    //GET api/Parks
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Park>>> Get()
+    public async Task<ActionResult<IEnumerable<Park>>> Get(string parkType)
     {
-      return await _db.Parks.ToListAsync();
+      IQueryable<Park> query = _db.Parks.AsQueryable();
+
+      if (parkType != null)
+      {
+        query = query.Where(entry => entry.ParkType == parkType);
+      }
+
+      return await query.ToListAsync();
     }
 
     //GET: api/Parks/3
